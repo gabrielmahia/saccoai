@@ -3,6 +3,7 @@ SaccoAI — Kenya SACCO & Chama Manager
 AI-powered chama, merry-go-round, and table banking management.
 """
 import sys, json, math, urllib.request, ssl, datetime
+import urllib.error
 import streamlit as st
 
 st.set_page_config(
@@ -28,7 +29,6 @@ def gemini(prompt: str, key: str, max_tokens: int = 1200) -> str:
         data=json.dumps(body).encode(),
         headers={"Content-Type": "application/json"})
     try:
-        import ssl, urllib.error
         with urllib.request.urlopen(req_obj, timeout=25,
                                      context=ssl.create_default_context()) as r:
             d = json.loads(r.read())
